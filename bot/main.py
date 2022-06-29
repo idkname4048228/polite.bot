@@ -1,5 +1,6 @@
 # 導入Discord.py
 import discord
+import os
 import time
 
 # client是我們與Discord連結的橋樑
@@ -36,6 +37,8 @@ async def on_message(message):
         #     await message.channel.send(tmp[1])
 
 
-client.run(
-    "OTg3MTk4OTA2NDM1Nzc2NjEz.Gam2OQ.q_5gWNU6p6pUXxt_FVo2NgQElxFqLwSXj6U4S0"
-)  # TOKEN 在剛剛 Discord Developer 那邊「BOT」頁面裡面
+TOKEN = os.getenv("DISCORD_TOKEN")
+if __name__ == "__main__":
+    client.run(
+        TOKEN
+    )  # TOKEN 在剛剛 Discord Developer 那邊「BOT」頁面裡面
