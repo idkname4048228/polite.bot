@@ -1,23 +1,24 @@
-# 導入Discord.py
-import discord
-import os
 import time
+import os
+import discord
+from discord.ext import commands
 
-# client是我們與Discord連結的橋樑
-client = discord.Client()
+bot = commands.Bot()
+TOKEN = os.getenv("DISCORD_TOKEN")
 
-# 調用event函式庫
-@client.event
-# 當機器人完成啟動時
+@bot.event
 async def on_ready():
-    print("目前登入身份：", client.user)
+    print("目前登入身份：", bot.user)
 
+@bot.command()
+async def ping(ctx):
+    await ctx.send("pong")
 
-@client.event
+@bot.event
 # 當有訊息時
 async def on_message(message):
     # 排除自己的訊息，避免陷入無限循環
-    if message.author == client.user:
+    if message.author == bot.user:
         return
     # 如果以「說」開頭
     if message.content.startswith("Start"):
@@ -28,17 +29,5 @@ async def on_message(message):
                 await message.channel.send("謝謝大哥")
             time.sleep(1)
 
-        # # 分割訊息成兩份
-        # tmp = message.content.split(" ", 2)
-        # # 如果分割後串列長度只有1
-        # if len(tmp) == 1:
-        #     await message.channel.send("你要我說什麼啦？")
-        # else:
-        #     await message.channel.send(tmp[1])
-
-
-TOKEN = os.getenv("DISCORD_TOKEN")
 if __name__ == "__main__":
-    client.run(
-        TOKEN
-    )  # TOKEN 在剛剛 Discord Developer 那邊「BOT」頁面裡面
+    bot.run(TOKEN)
