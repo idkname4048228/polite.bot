@@ -22,11 +22,10 @@ async def on_message(message):
     if message.content.startswith("Start"):
         await message.channel.send("K")
         while 1:
-            now_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-            if now_time[11:19:1] == '22:20:40':
+            now_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+            if now_time[11:19:1] == "22:20:40":
                 await message.channel.send("謝謝大哥")
             time.sleep(1)
-
 
         # # 分割訊息成兩份
         # tmp = message.content.split(" ", 2)
@@ -38,5 +37,5 @@ async def on_message(message):
 
 
 client.run(
-    "OTg3MTk4OTA2NDM1Nzc2NjEz.GR0lWJ.ASeFLtOevEczxzF1QOILD-I1GuG73bsbaGKEMA"
+    "OTg3MTk4OTA2NDM1Nzc2NjEz.Gam2OQ.q_5gWNU6p6pUXxt_FVo2NgQElxFqLwSXj6U4S0"
 )  # TOKEN 在剛剛 Discord Developer 那邊「BOT」頁面裡面
