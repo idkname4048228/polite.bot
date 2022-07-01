@@ -19,7 +19,7 @@ async def on_ready():
 async def thank_aniki(message):
     while 1:
         now_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        if now_time[11:19:1] == '18:50:40':
+        if now_time[11:19:1] == '19:10:40':
             await message.channel.send("謝謝大哥")
         await time.sleep(86400 - 1)
 
