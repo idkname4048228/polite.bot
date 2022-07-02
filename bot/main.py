@@ -15,24 +15,36 @@ async def on_ready():
 
 
 async def thank_aniki(message):
+    if message.author == client.user:
+        return
     while 1:
+        await asyncio.sleep(1)
         now_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        if now_time[11:19:1] == "19:15:40":
+        print(now_time)
+        if now_time[11:19:1] == "16:30:20":
             await message.channel.send("謝謝大哥")
-        await time.sleep(86400 - 1)
+            await asyncio.sleep(86400 - 1)
+
+async def sumimasan(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith("對不起"):
+        await message.channel.send("對不起")
+
 
 
 @client.event
 # 當有訊息時
 async def on_message(message):
-    # 排除自己的訊息，避免陷入無限循環
-    if message.author == client.user:
-        return
-    thank_aniki(message)
-    # 如果以「說」開頭
-    if message.content.startswith("對不起"):
-        await message.channel.send("對不起")
+    sorry = asyncio.create_task(sumimasan(message)) 
+    aniki = asyncio.create_task(thank_aniki(message)) 
+    await sorry
+    await aniki
+    
 
 
 TOKEN = os.getenv("DISCORD_TOKEN")
-client.run(TOKEN)  # TOKEN 在剛剛 Discord Developer 那邊「BOT」頁面裡面
+client.run(
+    TOKEN
+    # "OTg3MTk4OTA2NDM1Nzc2NjEz.GewQ7v.ZdA21gHyfe5BdSzwtVlLwH-Jtxl_EbG0evGOHs"
+)  # TOKEN 在剛剛 Discord Developer 那邊「BOT」頁面裡面
