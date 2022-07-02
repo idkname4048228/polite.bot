@@ -12,16 +12,19 @@ client = discord.Client()
 # 當機器人完成啟動時
 async def on_ready():
     print("目前登入身份：", client.user)
+    global times
+    times = 0
+    
 
 
-async def thank_aniki(message):
-    if message.author == client.user:
+async def thank_aniki(message, message_times):
+    if message.author == client.user or message_times > 1:
         return
     while 1:
         await asyncio.sleep(1)
         now_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         print(now_time)
-        if now_time[11:19:1] == "16:30:20":
+        if now_time[11:19:1] == "19:24:20":
             await message.channel.send("謝謝大哥")
             await asyncio.sleep(86400 - 1)
 
@@ -36,6 +39,9 @@ async def sumimasan(message):
 @client.event
 # 當有訊息時
 async def on_message(message):
+    global times
+    if times <= 1:
+        times += 1
     sorry = asyncio.create_task(sumimasan(message)) 
     aniki = asyncio.create_task(thank_aniki(message)) 
     await sorry
@@ -46,5 +52,4 @@ async def on_message(message):
 TOKEN = os.getenv("DISCORD_TOKEN")
 client.run(
     TOKEN
-    # "OTg3MTk4OTA2NDM1Nzc2NjEz.GewQ7v.ZdA21gHyfe5BdSzwtVlLwH-Jtxl_EbG0evGOHs"
 )  # TOKEN 在剛剛 Discord Developer 那邊「BOT」頁面裡面
