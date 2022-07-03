@@ -23,7 +23,7 @@ async def thank_aniki(message, message_times):
         await asyncio.sleep(1)
         now_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         print(now_time, times)
-        if now_time[11:19:1] == "22:00:00":
+        if now_time[11:19:1] == "14:00:00":
             await message.channel.send("謝謝大哥")
             await asyncio.sleep(86400 - 1)
 
