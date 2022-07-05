@@ -47,9 +47,9 @@ async def on_message(message):
         return
     if times <= 1:
         times += 1
-    sorry = asyncio.create_task(sumimasan(message))
+    # sorry = asyncio.create_task(sumimasan(message))
     aniki = asyncio.create_task(thank_aniki(message, times))
-    await sorry
+    # await sorry
     await aniki
 
 
